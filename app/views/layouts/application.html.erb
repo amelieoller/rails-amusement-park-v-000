@@ -20,10 +20,32 @@
             <span class="icon-bar"></span>
           </button>
         <a class="navbar-brand" href="<%= root_url %>"/>Home</a>
+
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-           <!--  nav here -->
+              <% if current_user %>
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="<%= attractions_path %>">Attractions</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<%= user_path(current_user) %>">Hello, <%= current_user.name %>!</a>
+                </li>
+                <li class="nav-item">
+                  <li><%= link_to "Log Out", signout_path, method: :delete %></li>
+                </li>
+
+              <% else %>
+
+                <li class="nav-item">
+                  <li><%= link_to "Sign Up", new_user_path %></li>
+                </li>  
+                <li class="nav-item">
+                  <li><%= link_to "Sign In", signin_path %></li>
+                </li>
+
+              <% end %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
